@@ -16,10 +16,12 @@ var api = require('./lib/controllers/api'),
 // Server Routes
 app.get('/api/precincts', api.precincts);
 app.get('/api/precinct/:id', api.precinct);
+app.get('/api/precinct-geo', api.precinctGeo);
 
 // Angular Routes
+app.get('/views/partials/*', index.partials);
 app.get('/partials/*', index.partials);
-app.get('/*', index.index);
+app.get('/', index.index);
 
 // Start server
 var port = process.env.PORT || 3000;

@@ -4,16 +4,26 @@ angular.module('nycMovingViolationsApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
-])
-  .config(function ($routeProvider, $locationProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'partials/main',
-        controller: 'MainCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-    $locationProvider.html5Mode(true);
+  'ngRoute',
+  'nycMovingViolationsApp.services',
+  'nycMovingViolationsApp.filters',
+  'nycMovingViolationsApp.directives'
+  ])
+.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+  $routeProvider
+  .when('/', {
+    templateUrl: 'partials/main',
+    controller: 'MainCtrl',
+    resolve: {
+      precincts:['Loader', '$location', function(Loader, $location) {
+        return Loader($location.$$path);
+      }
+      ]}
+    })
+  .otherwise({
+    redirectTo: '/'
   });
+  $locationProvider.html5Mode(true);
+}]);
+
+var directives = angular.module('nycMovingViolationsApp.directives', ['ngResource']);
