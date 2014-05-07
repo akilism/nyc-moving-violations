@@ -40,28 +40,7 @@ var getPrecinctViolations = function (precinct, year) {
     var refilter = function () {
       if($scope.violationFilter && $scope.yearFilter) {
         $scope.filteredData = filterYearlyData($scope.precincts, $scope.yearFilter, $scope.violationFilter);
-        $('.jumbotron').attr('style', 'height: 100px;').addClass('collapsed');
-        $('.expander').removeClass('glyphicon-chevron-up');
-        $('.expander').addClass('glyphicon-chevron-down');
-        $('.map-wrapper').removeClass('hide');
       }
-    };
-
-    $scope.expand = function () {
-      var $$jumbotron = $('.jumbotron');
-      $$jumbotron.toggleClass('collapsed');
-
-      if ($$jumbotron.hasClass('collapsed')) {
-        $$jumbotron.attr('style', 'height: 100px;');
-        $('.expander').removeClass('glyphicon-chevron-up');
-        $('.expander').addClass('glyphicon-chevron-down');
-      } else {
-        $$jumbotron.attr('style', '');
-        $('.expander').removeClass('glyphicon-chevron-down');
-        $('.expander').addClass('glyphicon-chevron-up');
-      }
-
-      // $('.map-wrapper').toggleClass('hide');
     };
 
     var getAllPrecinctViolation = function (precinct, violation) {
@@ -118,18 +97,31 @@ var getPrecinctViolations = function (precinct, year) {
 
       $scope.filterYear = function ($event, year) {
         highlightButton($event);
+        hideJumbotron();
         $scope.yearFilter = (year === $scope.yearFilter) ? null : year;
         refilter();
       };
 
       $scope.filterViolation = function ($event, violation) {
         highlightButton($event);
+        hideJumbotron();
         $scope.violationFilter = (violation === $scope.violationFilter) ? null : violation;
         refilter();
       };
 
-    }]);
+      var hideJumbotron = function () {
+        var $$jumbotron = $('.jumbotron');
 
+        if($$jumbotron.hasClass('vanish')) { return; }
+        $$jumbotron.addClass('vanish');
+
+        $('.map-wrapper').css('display', 'block');
+      };
+
+      $scope.violationFilter = $scope.violations[0];
+      refilter();
+
+    }]);
 
 
 

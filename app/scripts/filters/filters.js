@@ -8,3 +8,11 @@ filters.filter('yearDisplay', function () {
     return input;
   };
 });
+
+filters.filter('violationDisplay', function () {
+  return function (input) {
+    if (input.indexOf('(') === -1) { return input; }
+
+    return input.substring(0, input.indexOf('(')).trim();
+  };
+});

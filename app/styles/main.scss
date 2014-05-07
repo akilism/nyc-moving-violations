@@ -5,7 +5,7 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 body {
   // font-family: 'Open Sans', sans-serif;
   font-family: 'Lato', sans-serif;
-  overflow: scroll;
+  overflow-y: scroll;
   min-width: 755px;
 }
 
@@ -39,7 +39,26 @@ h1 {
     border-top: 1px solid #ddd;
 }
 
+.filters {
+  .btn {
+    display: block;
+    margin: 5px;
+    white-space: normal;
+  }
+
+  h3:first-child {
+    margin-top: 0;
+  }
+}
+
+.nav-pills > li {
+  text-align: center;
+  width: 33.33333%;
+}
+
 .jumbotron {
+
+  // transition: opacity .2s ease;
 
   padding: 20px 30px;
 
@@ -47,43 +66,13 @@ h1 {
     font-size: 2rem;
   }
 
-  .main-collapsed {
-    h3 {
-      opacity: 0;
-      transition: opacity .5s ease;
-    }
-  }
-
-  .expander {
-    font-size: 2rem;
-    display: inline;
-    top: 11px;
-    cursor: pointer;
-  }
-
-  .filters {
-    opacity: 1;
-    transition: opacity .2s ease;
-  }
-
   height: 700px;
-  transition: height .25s ease;
 }
 
-.jumbotron.collapsed {
-  overflow: hidden;
-
-  .main-collapsed {
-    h3 {
-      opacity: 1;
-      transition: opacity .2s ease;
-    }
-  }
-
-  .filters {
-    opacity: 0;
-    transition: opacity .5s ease;
-  }
+.jumbotron.vanish {
+  height: 0;
+  padding: 0;
+  opacity: 0;
 }
 
 .precinct-drawer {
@@ -147,15 +136,15 @@ h1 {
 
   .info-item {
     font-size: 1.25em;
-    padding-left: 5px;
+    padding-left: 0;
     margin: 5px 0;
-    height: 43px;
   }
 
   .label {
     font-size: 1.5rem;
     display: block;
     text-align: left;
+    padding: .2em;
   }
 }
 .filter-list {
@@ -169,7 +158,6 @@ h1 {
 }
 
 .btn-year, .btn-violation {
-
   transition: all 0.2s ease;
 
   &:hover {
@@ -203,6 +191,11 @@ h1 {
   cursor: pointer;
 }
 
+.map-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
 #mapKey {
 
   .x {
@@ -213,8 +206,6 @@ h1 {
       display: none;
     }
   }
-
-
 
   line {
     stroke: #000;
@@ -314,9 +305,14 @@ path {
   }
 
   .container .jumbotron {
-    max-width: 765px;
     margin: 0 auto;
     padding: 20px 50px;
+
+    &.vanish {
+      height: 0;
+      padding: 0;
+      opacity: 0;
+    }
   }
 
   .container .jumbotron h1 {
@@ -327,7 +323,6 @@ path {
   }
 
 }
-
 
 .footer {
   margin-bottom: 20px;

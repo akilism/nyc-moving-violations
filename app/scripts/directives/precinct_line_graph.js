@@ -109,7 +109,7 @@ var setLineGraph = function (data) {
 
   var lineGraph = g.selectAll('.violation-month-point')
   .data(data, function(d) {
-    return d.date.getMonth() + '' + d.date.getYear();
+    return d.date.getMonth() + '' + d.date.getYear() + '' + d.violations[0].name.replace(' ', '');
   });
 
   var lineGraphEnter = lineGraph.enter();
@@ -127,11 +127,10 @@ var setLineGraph = function (data) {
 
   var lineGraphUpdate = lineGraph.transition();
 
-  lineGraphUpdate.selectAll('.violation-month-point')
-  .attr('cx', function (d) { return timeScale(d.date); })
+  lineGraphUpdate.attr('cx', function (d) { return timeScale(d.date); })
   .attr('cy', function (d) { return totalScale(d.violations[0].mtd); });
 
-  lineGraphUpdate.selectAll('.violation-month-line').attr('d', pathSegment(data));
+  //lineGraphUpdate.selectAll('.violation-month-line').attr('d', pathSegment(data));
 
   lineGraph.exit().remove();
 

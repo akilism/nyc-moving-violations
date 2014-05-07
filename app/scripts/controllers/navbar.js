@@ -7,16 +7,13 @@ angular.module('nycMovingViolationsApp')
     switch(item) {
       case 'Home':
         $scope.active = 'Home';
-        $('.jumbotron .main-collapsed').show();
-        $('.jumbotron .filters').show();
-        $('.jumbotron .info-links').hide();
+        $('.jumbotron').addClass('vanish');
+        $('.map-wrapper').show();
         break;
       case 'About':
         $scope.active = 'About';
-        $('.jumbotron .main-collapsed').hide();
-        $('.jumbotron .filters').hide();
-        $('.jumbotron .info-links').removeClass('hide').show();
-        $('.jumbotron').removeClass('collapsed').attr('style', '');
+        $('.jumbotron').removeClass('vanish');
+        $('.map-wrapper').hide();
         break;
     }
   };
@@ -29,7 +26,7 @@ angular.module('nycMovingViolationsApp')
   }];
 
   $scope.active = 'Home';
-  $('.jumbotron .info-links').hide();
+  //$('.jumbotron').hide();
 
   $scope.isActive = function(title) {
     return title === $scope.active;

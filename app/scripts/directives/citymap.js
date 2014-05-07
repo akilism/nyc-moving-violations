@@ -17,34 +17,35 @@ directives.cityMap = function ($scope, $element, $attrs, $http) {
     $scope.precinctGeoJson = data;
     // setCityMap($scope.precinctGeoJson);
     // setMap('cityMap', data.features);
+
+    $scope.$watch('violationFilter', function (newValue, oldValue) {
+      if(newValue && $scope.yearFilter) {
+        setCityMap($scope.precinctGeoJson);
+      }
+    });
+
+    $scope.$watch('yearFilter', function (newValue, oldValue) {
+      if(newValue && $scope.violationFilter) {
+        setCityMap($scope.precinctGeoJson);
+      }
+    });
   }).
   error(function (data, status, headers, config) {
   });
 
-  $scope.$watch('violationFilter', function (newValue, oldValue) {
-    if(newValue && $scope.yearFilter) {
-      setCityMap($scope.precinctGeoJson);
-    }
-  });
-
-  $scope.$watch('yearFilter', function (newValue, oldValue) {
-    if(newValue && $scope.violationFilter) {
-      setCityMap($scope.precinctGeoJson);
-    }
-  });
-
 
   //Some helper map functions.
-
   // Apply highlight to precinct shapes on mouseover.
   var highlightPrecinct = function (elem) {
     elem.classList.add('highlighted-path');
   };
 
+
   // Remove highlight on mouseout.
   var removePrecinctHighlight = function (elem) {
     elem.classList.remove('highlighted-path');
   };
+
 
   var mapPrecinctId = function (precinctId, from) {
     var mappedId = '';
@@ -63,7 +64,6 @@ directives.cityMap = function ($scope, $element, $attrs, $http) {
 
     return mappedId;
   };
-
 
 
   // Set event handlers on shapes.
@@ -333,7 +333,6 @@ directives.cityMap = function ($scope, $element, $attrs, $http) {
 
 
     precinct.exit().remove();
-
   };
 
 };
