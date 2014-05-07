@@ -96,10 +96,12 @@ var setLineGraph = function (data) {
   .tickPadding(5)
   .ticks(5);
 
+  var xTickCount = (data.length > 10) ? 10 : data.length;
   var xAxis = d3.svg.axis()
   .scale(timeScale)
   .tickSize(50,1)
-  .tickFormat(d3.time.format('%m, %Y'));
+  .tickFormat(d3.time.format('%m, %Y'))
+  .ticks(xTickCount);
 
   var pathSegment = d3.svg.line()
   .x(function(d) { return timeScale(d.date); })
