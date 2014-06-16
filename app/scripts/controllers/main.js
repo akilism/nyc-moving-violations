@@ -98,6 +98,7 @@ var getPrecinctViolations = function (precinct, year) {
       $scope.filterYear = function ($event, year) {
         highlightButton($event);
         hideJumbotron();
+        ga('send', 'event', 'filter', 'filterYear', year);
         $scope.yearFilter = (year === $scope.yearFilter) ? null : year;
         refilter();
       };
@@ -105,6 +106,7 @@ var getPrecinctViolations = function (precinct, year) {
       $scope.filterViolation = function ($event, violation) {
         highlightButton($event);
         hideJumbotron();
+        ga('send', 'event', 'filter', 'filterViolation', violation);
         $scope.violationFilter = (violation === $scope.violationFilter) ? null : violation;
         refilter();
       };

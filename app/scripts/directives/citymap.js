@@ -221,7 +221,7 @@ directives.cityMap = function ($scope, $element, $attrs, $http) {
 
     color.domain(getDomain(domains, domainMax)).range(['transparent', '#fff5f0','#fee0d2','#fcbba1','#fc9272','#fb6a4a','#ef3b2c','#cb181d','#a50f15','#67000d']);
 
-    // A position encoding for the key only.
+    // A position encoding for the key only. bl.ocks.org/mbostock/5144735
     var x = d3.scale.linear()
       .domain(getDomain(domains, domainMax))
       .range([0,25]);
@@ -317,6 +317,7 @@ directives.cityMap = function ($scope, $element, $attrs, $http) {
       var precinct = _.find($scope.precincts, { 'id': precinctId });
       var violationTotal = getPrecinctTotal($scope.violationFilter, $scope.yearFilter, precinctId);
       precinct.geometry = d.geometry;
+      ga('send', 'event', 'click', 'precinct', precinctId);
       $scope.$apply(function () {
         $scope.activePrecincts[0] = precinct;
         $scope.violationTotal = violationTotal;

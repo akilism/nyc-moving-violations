@@ -26,4 +26,4 @@ angular.module('nycMovingViolationsApp', [
   $locationProvider.html5Mode(true);
 }]);
 
-var directives = angular.module('nycMovingViolationsApp.directives', ['ngResource']);
+var directives = angular.module('nycMovingViolationsApp.directives');

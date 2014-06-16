@@ -1,6 +1,6 @@
 'use strict';
 
-var filters = angular.module('nycMovingViolationsApp.filters', ['ngResource']);
+var filters = angular.module('nycMovingViolationsApp.filters');
 
 filters.filter('yearDisplay', function () {
   return function (input) {

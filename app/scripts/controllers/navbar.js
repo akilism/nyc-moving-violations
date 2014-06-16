@@ -12,6 +12,7 @@ angular.module('nycMovingViolationsApp')
         break;
       case 'About':
         $scope.active = 'About';
+        ga('send', 'event', 'button', 'click', 'about');
         $('.jumbotron').removeClass('vanish');
         $('.map-wrapper').hide();
         break;

@@ -1,6 +1,6 @@
 'use strict';
 
-var services = angular.module('nycMovingViolationsApp.services', ['ngResource']);
+var services = angular.module('nycMovingViolationsApp.services');
 
 var host = 'nycMovingViolationsApp';
 
