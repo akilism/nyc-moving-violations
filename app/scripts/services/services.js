@@ -19,7 +19,7 @@ services.factory('Loader', ['$http', '$q', function ($http, $q) {
     if (path === '/') {
         //check localstorage for totals.
         //To clear:
-        // localStorage.removeItem('nycMovingViolationsApp');
+        localStorage.removeItem('nycMovingViolationsApp');
         var storedData = getStoredDataset();
         if (storedData) {
           console.log('returning stored data.');

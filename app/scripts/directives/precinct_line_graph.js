@@ -24,7 +24,8 @@ directives.precinctLineGraph = function ($scope, $element, $attrs, $http) {
     $http({method: 'GET', url: '/api/precinct/' + precinctId + '?year=' + yearFilter + '&violation=' + violationFilter }).
     success(function(data, status, headers, config) {
       _.forEach(data.monthly_totals, function(month) {
-        month.date = new Date(month.year, month.month_no);
+        // console.log(month);
+        month.date = new Date(month.year, (month.month_no - 1));
       });
 
       $scope.graphData = data;

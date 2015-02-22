@@ -135,7 +135,6 @@ directives.cityMap = function ($scope, $element, $attrs, $http) {
       return total;
     }
 
-
     if(precinct.totals[year].hasOwnProperty(violation)) {
       return precinct.totals[year][violation].ytd_ttl;
     } else {
